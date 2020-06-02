@@ -6,9 +6,7 @@ import _ from "lodash";
 
 Mongoose.Promise = global.Promise;
 
-const mongo = Mongoose.connect("mongodb://localhost/views", {
-  useMongoClient: true,
-});
+const mongo = Mongoose.connect("mongodb://localhost/views");
 
 const ViewSchema = Mongoose.Schema({
   postId: Number,
@@ -48,7 +46,7 @@ db.sync({ force: true }).then(() => {
           text: casual.sentences(3),
         })
         .then((post) => {
-          return View.update(
+          return View.updateOne(
             { postId: post.id },
             { views: casual.integer(0, 100) },
             { upsert: true }
