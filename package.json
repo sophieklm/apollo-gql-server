@@ -14,7 +14,8 @@
     "mongoose": "^5.9.16",
     "node-fetch": "^2.6.0",
     "sequelize": "^5.21.11",
-    "sqlite": "^4.0.9"
+    "sqlite": "^4.0.9",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
