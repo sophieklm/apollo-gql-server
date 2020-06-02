@@ -1,4 +1,4 @@
-import { Author, Post, View } from "./connectors";
+import { Author, Post, View, FortuneCookie } from "./connectors";
 
 export const resolvers = {
   Query: {
@@ -10,6 +10,9 @@ export const resolvers = {
     },
     allPosts() {
       return Post.findAll();
+    },
+    getFortuneCookie() {
+      return FortuneCookie.getOne();
     },
   },
   Author: {

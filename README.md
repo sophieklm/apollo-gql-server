@@ -19,7 +19,7 @@ When you paste this on the left side of the page:
 
 ```graphql
 query {
-  author(firstName: "Maurine", lastName: "Rau") {
+  author(firstName: "Edmond", lastName: "Jones") {
     firstName
     lastName
     posts {
@@ -27,24 +27,26 @@ query {
       views
     }
   }
+  getFortuneCookie
 }
 ```
 
-and hit the play button (cmd-return), then you should get this on the right side:
+Hit the play button (cmd-return), then you should get a response like this:
 
 ```json
 {
   "data": {
     "author": {
-      "firstName": "Maurine",
-      "lastName": "Rau",
+      "firstName": "Edmond",
+      "lastName": "Jones",
       "posts": [
         {
-          "title": "A post by Maurine",
-          "views": 0
+          "title": "A post by Edmond",
+          "views": 92
         }
       ]
-    }
+    },
+    "getFortuneCookie": "Say what you mean and mean what you say."
   }
 }
 ```
