@@ -1,27 +1,32 @@
-# apollo-tutorial-kit
+# Apollo GraphQL Server
 
-Starting point for the Apollo GraphQL Server tutorial.
+GraphQL server that connects to multiple backends: a SQL database, a MongoDB database and a REST endpoint.
 
-Follow along with the tutorial in the blog post: [How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.wy5h1htxs). If you want to skip ahead to the solution, check out the [server-tutorial-solution](https://github.com/apollographql/apollo-tutorial-kit/tree/server-tutorial-solution) branch of this repo.
+(A basic blog app with authors, posts and views)
 
-Up-to-date documentation and explanations can be found in the [Apollo Server docs](https://www.apollographql.com/docs/apollo-server/)
+Follows the following tutorial but with updates for Apollo 2: [How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.wy5h1htxs).
 
 ## Getting started
 
 ```bash
-git clone https://github.com/apollostack/apollo-starter-kit
-cd apollo-starter-kit
 npm install
 npm start
 ```
 
-Then open [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
+Then open [http://localhost:3000/graphql](http://localhost:3000/graphql)
 
 When you paste this on the left side of the page:
 
 ```graphql
-{
-  testString
+query {
+  author(firstName: "Edmond", lastName: "Jones") {
+    firstName
+    lastName
+    posts {
+      title
+      views
+    }
+  }
 }
 ```
 
@@ -30,7 +35,20 @@ and hit the play button (cmd-return), then you should get this on the right side
 ```json
 {
   "data": {
-    "testString": "It works!"
+    "author": {
+      "firstName": "Edmond",
+      "lastName": "Jones",
+      "posts": [
+        {
+          "title": "Dolor in accusantium",
+          "views": -64
+        },
+        {
+          "title": "Magnam voluptatem reprehenderit",
+          "views": -79
+        }
+      ]
+    }
   }
 }
 ```
