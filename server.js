@@ -1,17 +1,17 @@
-import express from 'express';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import bodyParser from 'body-parser';
-import schema from './data/schema';
+import express from "express";
+const { ApolloServer } = require("apollo-server-express");
+import { typeDefs } from "./data/schema";
+import mocks from "./data/mocks";
 
 const GRAPHQL_PORT = 3000;
 
-const graphQLServer = express();
+const app = express();
 
-graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-graphQLServer.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+const server = new ApolloServer({ typeDefs, mocks });
+server.applyMiddleware({ app });
 
-graphQLServer.listen(GRAPHQL_PORT, () =>
+app.listen(GRAPHQL_PORT, () =>
   console.log(
-    `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`
+    `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphql`
   )
 );
