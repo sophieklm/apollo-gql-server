@@ -1,6 +1,20 @@
 import Sequelize from "sequelize";
+import Mongoose from "mongoose";
 import casual from "casual";
 import _ from "lodash";
+
+Mongoose.Promise = global.Promise;
+
+const mongo = Mongoose.connect("mongodb://localhost/views", {
+  useMongoClient: true,
+});
+
+const ViewSchema = Mongoose.Schema({
+  postId: Number,
+  views: Number,
+});
+
+const View = Mongoose.model("views", ViewSchema);
 
 const db = new Sequelize("blog", null, null, {
   dialect: "sqlite",
@@ -27,10 +41,18 @@ db.sync({ force: true }).then(() => {
       firstName: casual.first_name,
       lastName: casual.last_name,
     }).then((author) => {
-      return author.createPost({
-        title: `A post by ${author.firstName}`,
-        text: casual.sentences(3),
-      });
+      return author
+        .createPost({
+          title: `A post by ${author.firstName}`,
+          text: casual.sentences(3),
+        })
+        .then((post) => {
+          return View.update(
+            { postId: post.id },
+            { views: casual.integer(0, 100) },
+            { upsert: true }
+          );
+        });
     });
   });
 });
@@ -38,4 +60,4 @@ db.sync({ force: true }).then(() => {
 const Author = db.models.author;
 const Post = db.models.post;
 
-export { Author, Post };
+export { Author, Post, View };
