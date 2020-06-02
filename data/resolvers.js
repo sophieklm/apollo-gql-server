@@ -8,6 +8,9 @@ export const resolvers = {
     allAuthors() {
       return Author.findAll();
     },
+    allPosts() {
+      return Post.findAll();
+    },
   },
   Author: {
     posts(author) {

@@ -5,6 +5,7 @@ export const typeDefs = gql`
   type Query {
     author(firstName: String, lastName: String): Author
     allAuthors: [Author]
+    allPosts: [Post]
     getFortuneCookie: String
   }
   type Author {
