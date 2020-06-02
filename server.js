@@ -1,9 +1,9 @@
 import express from "express";
-const { ApolloServer } = require("apollo-server-express");
+import dotenv from "dotenv";
+import { ApolloServer } from "apollo-server-express";
+import { ApolloEngine } from "apollo-engine";
 import { typeDefs } from "./data/schema";
 import { resolvers } from "./data/resolvers";
-import { ApolloEngine } from "apollo-engine";
-import dotenv from "dotenv";
 
 dotenv.config();
 
