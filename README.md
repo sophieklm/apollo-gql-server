@@ -2,7 +2,7 @@
 
 GraphQL server that connects to multiple backends: a SQL database, a MongoDB database and a REST endpoint.
 
-A basic blog app with authors, posts and views.
+Server for a basic blog app with authors, posts and views.
 
 Adapted from the following tutorial with updates for Apollo 2: [How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.wy5h1htxs).
 

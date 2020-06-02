@@ -26,18 +26,18 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 
 const engine = new ApolloEngine({
-  apiKey: process.env.ENGINE_API_KEY,
+  apiKey: process.env.APOLLO_KEY,
 });
 
 app.listen(
-  // {
-  //   port: GRAPHQL_PORT,
-  //   graphqlPaths: ["/api/graphql"],
-  //   expressApp: app,
-  //   launcherOptions: {
-  //     startupTimeout: 3000,
-  //   },
-  // },
+  {
+    port: GRAPHQL_PORT,
+    // graphqlPaths: ["/api/graphql"],
+    // expressApp: app,
+    // launcherOptions: {
+    //   startupTimeout: 3000,
+    // },
+  },
   () =>
     console.log(
       `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphql`

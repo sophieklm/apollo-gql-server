@@ -6,7 +6,10 @@ import _ from "lodash";
 
 Mongoose.Promise = global.Promise;
 
-const mongo = Mongoose.connect("mongodb://localhost/views");
+const mongo = Mongoose.connect("mongodb://localhost/views", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const ViewSchema = Mongoose.Schema({
   postId: Number,
